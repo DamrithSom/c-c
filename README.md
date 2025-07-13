@@ -28,5 +28,5 @@ Install Flask:
 ```bash
 pip install Flask
 ```
-python -m venv venv
-source venv/bin/activate   # On Windows: venv\Scripts\activate
+- python -m venv venv
+- source venv/bin/activate   # On Windows: venv\Scripts\activate
