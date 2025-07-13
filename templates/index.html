@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>C2 Web Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+</head>
+
+<body>
+    <h1>Connected Clients</h1>
+    <p>Author: Cyber Attack</p>
+    <p>Copyright: © 2025 Cyber Attack</p>
+    <p>Version: 1.0</p>
+
+    <ul>
+        {% for c in clients %}
+            <li>
+                Client {{ c.id }} - {{ c.ip }}:{{ c.port }}
+                {% if selected == c.id %}
+                    [Selected]
+                {% else %}
+                    <a href="/select/{{ c.id }}">Select</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% if selected is not none %}
+        <h2>Command Input</h2>
+        <form method="POST" action="/send">
+            <input type="text" name="command" placeholder="Enter command">
+            <button type="submit">Send</button>
+        </form>
+    {% endif %}
+
+    {% if response %}
+        <h3>Response:</h3>
+        <pre>{{ response }}</pre>
+    {% endif %}
+</body>
+</html>
